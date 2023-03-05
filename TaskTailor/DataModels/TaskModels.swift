@@ -5,7 +5,21 @@
 //  Created by Ross Chea on 2023-03-05.
 //
 
-import Foundation
+import SwiftUI
+
+enum ColorPalette: String {
+    case darkJungleGreen
+    case myrtleGreen
+    case peachCrayola
+    case wintergreenDream
+    case redPigment
+}
+
+extension Color {
+    init(_ colorPalette: ColorPalette) {
+        self.init(colorPalette.rawValue)
+    }
+}
 
 enum TaskSize: String, CaseIterable {
     case small
@@ -26,6 +40,17 @@ enum TaskSize: String, CaseIterable {
     var text: String {
         return "+ \(self.rawValue.capitalized) Task"
     }
+
+    var color: some View {
+        switch self {
+            case .small:
+                return Color(.darkJungleGreen)
+            case .medium:
+                return Color(.myrtleGreen)
+            case .large:
+                return Color(.wintergreenDream)
+        }
+    }
 }
 extension TaskSize: Hashable, Identifiable {
     var id: Self { self }
@@ -36,3 +61,4 @@ extension TaskSize: Hashable, Identifiable {
     //        }
     //    }
 }
+
