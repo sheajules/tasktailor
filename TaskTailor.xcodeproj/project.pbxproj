@@ -16,6 +16,7 @@
 		1B332CF729B2E32C00C1FB0C /* TaskTailorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B332CF629B2E32C00C1FB0C /* TaskTailorTests.swift */; };
 		1B332D0129B2E32C00C1FB0C /* TaskTailorUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B332D0029B2E32C00C1FB0C /* TaskTailorUITests.swift */; };
 		1B332D0329B2E32C00C1FB0C /* TaskTailorUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B332D0229B2E32C00C1FB0C /* TaskTailorUITestsLaunchTests.swift */; };
+		1B567E7B29B42ADA003A460E /* DashboardContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B567E7A29B42ADA003A460E /* DashboardContentView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +49,8 @@
 		1B332CFC29B2E32C00C1FB0C /* TaskTailorUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TaskTailorUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B332D0029B2E32C00C1FB0C /* TaskTailorUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskTailorUITests.swift; sourceTree = "<group>"; };
 		1B332D0229B2E32C00C1FB0C /* TaskTailorUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskTailorUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		1B567E7A29B42ADA003A460E /* DashboardContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardContentView.swift; sourceTree = "<group>"; };
+		1B567E7C29B42D98003A460E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,8 +101,10 @@
 		1B332CDF29B2E32900C1FB0C /* TaskTailor */ = {
 			isa = PBXGroup;
 			children = (
+				1B567E7C29B42D98003A460E /* Info.plist */,
 				1B332CE029B2E32900C1FB0C /* TaskTailorApp.swift */,
 				1B332CE229B2E32900C1FB0C /* ContentView.swift */,
+				1B567E7A29B42ADA003A460E /* DashboardContentView.swift */,
 				1B332CE429B2E32B00C1FB0C /* Assets.xcassets */,
 				1B332CE929B2E32B00C1FB0C /* Persistence.swift */,
 				1B332CEB29B2E32B00C1FB0C /* TaskTailor.xcdatamodeld */,
@@ -265,6 +270,7 @@
 			files = (
 				1B332CEA29B2E32B00C1FB0C /* Persistence.swift in Sources */,
 				1B332CED29B2E32B00C1FB0C /* TaskTailor.xcdatamodeld in Sources */,
+				1B567E7B29B42ADA003A460E /* DashboardContentView.swift in Sources */,
 				1B332CE329B2E32900C1FB0C /* ContentView.swift in Sources */,
 				1B332CE129B2E32900C1FB0C /* TaskTailorApp.swift in Sources */,
 			);
@@ -428,7 +434,7 @@
 				DEVELOPMENT_TEAM = CQD43C885C;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_FILE = TaskTailor/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -457,7 +463,7 @@
 				DEVELOPMENT_TEAM = CQD43C885C;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_FILE = TaskTailor/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
