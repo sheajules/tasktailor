@@ -12,6 +12,17 @@ enum TaskSize: String, CaseIterable {
     case medium
     case large
 
+    var minsForTask: Int {
+        switch self {
+            case .small:
+                return 5
+            case .medium:
+                return 15
+            case .large:
+                return 45
+        }
+    }
+
     var text: String {
         return "+ \(self.rawValue.capitalized) Task"
     }
@@ -83,16 +94,35 @@ struct DashboardContentView: View {
 
     init() {
         items = categoryTaskService.categoryCases
+        //Use this if NavigationBarTitle is with Large Font
+        UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: UIColor.systemGray3]
+        //Use this if NavigationBarTitle is with displayMode = .inline
+        UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: UIColor.systemGray3]
+
     }
 
     var body: some View {
         NavigationView {
-            List {
-                ForEach(items, id: \.self) { item in
-                    Text(item.text)
-                        .onTapGesture {
-                            self.seelctedType = item
+            VStack {
+                Section {
+                    List {
+                        ForEach(items, id: \.self) { item in
+                            Text(item.text)
+                                .onTapGesture {
+                                    self.seelctedType = item
+                                }
                         }
+                    }
+                } header: {
+                    Text("Today's lineup")
+                        .font(.title)
+                        .foregroundColor(Color(.systemGray2))
+                } footer: {
+                    VStack {
+                        Text("0 mins completed")
+                            .font(.callout)
+                        Text("Target time: 65 mins")
+                    }
                 }
             }
             .fullScreenCover(item: $seelctedType) { item in
@@ -103,6 +133,8 @@ struct DashboardContentView: View {
                 }
             }
             .environmentObject(categoryTaskService)
+            .navigationTitle("Complete the trifecta of tasks")
+            .navigationBarTitleDisplayMode(.inline)
         }
     }
 }
@@ -172,6 +204,21 @@ struct FullScreenModalView: View {
         "priority"
     ]
 
+    func getTotalTimeForTasks(_ taskCount: Int, timeType: TaskSize) -> Int {
+        timeType.minsForTask * taskCount
+    }
+
+    func getTotalTimeTextForTasks(_ taskCount: Int, timeType: TaskSize) -> String {
+        switch timeType {
+            case .small:
+                return "< \(getTotalTimeForTasks(taskCount, timeType: .small))"
+            case .medium:
+                return "< \(getTotalTimeForTasks(taskCount, timeType: .medium))"
+            case .large:
+                return "~ \(getTotalTimeForTasks(taskCount, timeType: .large))"
+        }
+    }
+
     var content: some View {
         VStack {
             List {
@@ -214,10 +261,11 @@ struct FullScreenModalView: View {
                                 Text(sortBy)
                             }
                         }
+                        .offset(x: 24)
                     }
                 } footer: {
                     // take the timeType and multiply it by count
-                    Text("Estimated timeleft for tasks: < 15 mins")
+                    Text("Estimated timeleft for tasks: \(getTotalTimeTextForTasks(items.count, timeType: taskSize)) mins")
                 }
                 Section("Wellness") {
                     ForEach(items, id: \.self) { item in
@@ -281,15 +329,8 @@ struct CreateTaskModalView: View {
     ]
 
     var body: some View {
-
         ZStack {
             content
-            VStack {
-                Spacer()
-                buttonOnTop
-                    .padding(.horizontal)
-            }
-
         }
     }
 
@@ -341,20 +382,5 @@ struct CreateTaskModalView: View {
 
         }
         .padding()
-    }
-
-    var buttonOnTop: some View {
-        HStack {
-            Spacer()
-            Button {
-                presentationMode.wrappedValue.dismiss()
-            } label: {
-                Text("Add task")
-            }
-            .padding()
-            .background(.green)
-            .cornerRadius(8)
-            .padding(.bottom, 16)
-        }
     }
 }
