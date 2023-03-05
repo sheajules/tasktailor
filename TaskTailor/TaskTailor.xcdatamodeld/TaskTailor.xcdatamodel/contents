@@ -3,5 +3,11 @@
     <entity name="Item" representedClassName="Item" syncable="YES" codeGenerationType="class">
         <attribute name="timestamp" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
     </entity>
-    <entity name="TaskItem" representedClassName="TaskItem" syncable="YES" codeGenerationType="class"/>
+    <entity name="ProjectEntity" representedClassName="ProjectEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="title" optional="YES" attributeType="String"/>
+        <relationship name="tasks" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="TaskEntity" inverseName="project" inverseEntity="TaskEntity"/>
+    </entity>
+    <entity name="TaskEntity" representedClassName="TaskEntity" syncable="YES" codeGenerationType="class">
+        <relationship name="project" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectEntity" inverseName="tasks" inverseEntity="ProjectEntity"/>
+    </entity>
 </model>
