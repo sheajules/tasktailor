@@ -56,6 +56,55 @@ struct DashboardContentView: View {
         Text("Steak: Week 3")
             .font(.subheadline)
             .foregroundColor(Color(.systemGray3))
+        HStack {
+            Text("Thursday's Best: 35 mins")
+                .font(.subheadline)
+                .foregroundColor(Color(.systemGray3))
+            Text("Ave weekday: 23 mins")
+                .font(.subheadline)
+                .foregroundColor(Color(.systemGray3))
+        }
+    }
+
+    @ViewBuilder
+    func subjectHeader(taskCount: Int) -> some View {
+        HStack {
+            Text("\(taskCount)")
+                .padding(4)
+                .foregroundColor(.white)
+                .background(.gray)
+                .clipShape(Circle())
+            Text("Incomplete")
+            Divider()
+            Text("0")
+                .padding(4)
+                .foregroundColor(.white)
+                .background(.gray)
+                .clipShape(Circle())
+            Text("Completed")
+        }
+    }
+
+    var sampleTasks: [String] = [
+        "Clean bedroom",
+        "Cook breakfast",
+        "Draw"
+    ]
+
+    @State var toggleCheckbox: Bool = false
+
+    @ViewBuilder
+    func createCheckboxView(_ title: String) -> some View {
+        Button {
+            toggleCheckbox.toggle()
+        } label: {
+            HStack {
+                Image(systemName: toggleCheckbox ? "checkmark.square.fill" : "square")
+                Text(title)
+                Spacer()
+            }
+        }
+        .padding(.top, 4)
     }
 
     @ViewBuilder
@@ -67,6 +116,15 @@ struct DashboardContentView: View {
 
             ForEach(items, id: \.self) { item in
                 Section {
+
+                    DisclosureGroup {
+                        ForEach(sampleTasks, id: \.self) {
+                            createCheckboxView($0)
+                        }
+                    } label: {
+                        subjectHeader(taskCount: 0)
+                    }
+
                     Text(item.text)
                         .listRowBackground(item.color)
                         .foregroundColor(Color(.white))
@@ -74,9 +132,6 @@ struct DashboardContentView: View {
                             self.seelctedType = item
                         }
                 } header: {
-                    Text("# Completed")
-                        .font(.caption2)
-                        .foregroundColor(Color(.systemGray2))
                 } footer: {
                     VStack {
                         Text("0 mins completed")

@@ -44,11 +44,11 @@ enum TaskSize: String, CaseIterable {
     var color: some View {
         switch self {
             case .small:
-                return Color(.darkJungleGreen)
+                return Color(.wintergreenDream)
             case .medium:
                 return Color(.myrtleGreen)
             case .large:
-                return Color(.wintergreenDream)
+                return Color(.darkJungleGreen)
         }
     }
 }
