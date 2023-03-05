@@ -51,6 +51,17 @@ enum TaskSize: String, CaseIterable {
                 return Color(.darkJungleGreen)
         }
     }
+
+    var colorShape: some ShapeStyle {
+        switch self {
+            case .small:
+                return Color(.wintergreenDream)
+            case .medium:
+                return Color(.myrtleGreen)
+            case .large:
+                return Color(.darkJungleGreen)
+        }
+    }
 }
 extension TaskSize: Hashable, Identifiable {
     var id: Self { self }

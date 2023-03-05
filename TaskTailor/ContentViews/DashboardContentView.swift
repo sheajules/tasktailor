@@ -264,9 +264,9 @@ struct DashboardContentView: View {
                 .fullScreenCover(item: $seelctedType) { item in
                     NavigationView {
                         SelectTaskModalView(taskSize: item)
-                            .navigationTitle("Select a \(item.rawValue) task")
                             .navigationBarTitleDisplayMode(.inline)
                     }
+                    .accentColor(.white)
                 }
                 .environmentObject(categoryTaskService)
                 .navigationTitle("Overview")
@@ -291,5 +291,6 @@ struct DashboardContentView: View {
                 }
             }
         }
+        .accentColor(.white)
     }
 }

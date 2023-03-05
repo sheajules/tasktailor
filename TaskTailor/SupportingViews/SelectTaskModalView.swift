@@ -37,10 +37,16 @@ struct SelectTaskModalView: View {
             content
         }
         .toolbar {
+            ToolbarItem(placement: .principal) {
+                Text("Select a \(taskSize.rawValue) task")
+                    .font(.headline)
+                    .foregroundColor(.white)
+            }
             ToolbarItem(placement: .navigationBarLeading) {
                 Button("ⓧ") {
                     presentationMode.wrappedValue.dismiss()
                 }
+                .foregroundColor(.white)
             }
             ToolbarItemGroup(placement: .secondaryAction) {
                 Button("About") {
@@ -51,7 +57,10 @@ struct SelectTaskModalView: View {
                     print("Help tapped!")
                 }
             }
+
         }
+        .toolbarBackground(taskSize.colorShape, for: .navigationBar)
+        .toolbarBackground(.visible, for: .navigationBar)
     }
 
     // Per section
@@ -94,6 +103,7 @@ struct SelectTaskModalView: View {
                                 HStack {
                                     Image(systemName: "plus.circle.fill")
                                     Text(item)
+                                        .foregroundColor(.black)
                                 }
                             }
                             .listRowInsets(.init(top: 0, leading: -4, bottom: 0, trailing: 0))
@@ -103,6 +113,7 @@ struct SelectTaskModalView: View {
                         } label: {
                             HStack {
                                 Image(systemName: "plus.circle.fill")
+                                    .foregroundColor(Color(.systemGray5))
                                 TextField("New \(taskSize.rawValue) task", text: $newTaskTitle)
                                     .onTapGesture {
                                         addNewRowBelow = true
@@ -122,6 +133,7 @@ struct SelectTaskModalView: View {
                         Picker("Sort", selection: $selectedSort) {
                             ForEach(sortBys, id: \.self) { sortBy in
                                 Text(sortBy)
+                                    .foregroundColor(Color(.systemGray5))
                             }
                         }
                         .offset(x: 24)
