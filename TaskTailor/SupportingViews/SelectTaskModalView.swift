@@ -102,6 +102,7 @@ struct SelectTaskModalView: View {
                             } label: {
                                 HStack {
                                     Image(systemName: "plus.circle.fill")
+                                        .foregroundColor(.black)
                                     Text(item)
                                         .foregroundColor(.black)
                                 }

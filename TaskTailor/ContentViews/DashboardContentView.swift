@@ -254,6 +254,9 @@ struct DashboardContentView: View {
             .foregroundColor(Color(.systemGray3))
     }
 
+    @State private var isMenuOpened = false
+    @State private var animationAmount: CGFloat = 0.0
+
     var body: some View {
         NavigationView {
             ZStack {
@@ -271,23 +274,13 @@ struct DashboardContentView: View {
                 .environmentObject(categoryTaskService)
                 .navigationTitle("Overview")
                 .navigationBarTitleDisplayMode(.inline)
-                HStack {
-                    Spacer()
-                    VStack(alignment: .trailing) {
-                        Spacer()
 
-                        ForEach(items, id: \.self) { item in
-                            Text(item.text)
-                                .padding(8)
-                                .background(item.color)
-                                .foregroundColor(Color(.white))
-                                .cornerRadius(12)
-                                .onTapGesture {
-                                    self.seelctedType = item
-                                }
-                        }
-                    }
-                    .padding(8)
+                FloatingMenu(openValue: $animationAmount, isMenuOpen: $isMenuOpened) {
+                    self.seelctedType = .large
+                } showMenuMediumTaskClosure: {
+                    self.seelctedType = .medium
+                } showMenuSmallTaskClosure: {
+                    self.seelctedType = .small
                 }
             }
         }
