@@ -93,6 +93,8 @@ struct SelectTaskModalView: View {
 
     var content: some View {
         VStack {
+            Text("Add a search feature")
+            Text("Pill filter category at the top *here")
             List {
                 Section {
                     DisclosureGroup(isExpanded: $isOpened) {

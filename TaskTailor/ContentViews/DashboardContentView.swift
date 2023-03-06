@@ -159,7 +159,10 @@ struct DashboardContentView: View {
             }
         } label: {
             Text("Primary tasks in-progress")
+                .font(.title2)
         }
+        .foregroundColor(Color(.redPigment))
+        .accentColor(Color(.redPigment))
     }
 
     var completedTasks: some View {
@@ -185,8 +188,9 @@ struct DashboardContentView: View {
                 Text("spent")
             }
         }
+        .foregroundColor(Color(.peachCrayola))
+        .accentColor(Color(.peachCrayola))
     }
-
 
     @ViewBuilder
     var trifectableView: some View {
@@ -220,6 +224,7 @@ struct DashboardContentView: View {
                     .clipShape(Circle())
                     .padding(.trailing, 8)
                 Text("Trifecta")
+                    .foregroundColor(Color(.peachCrayola))
             }
             currentTasks
             completedTasks
