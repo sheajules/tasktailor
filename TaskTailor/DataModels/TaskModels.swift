@@ -7,6 +7,28 @@
 
 import SwiftUI
 
+enum CategorySection: String, CaseIterable {
+    case home, wellness, passion, social
+
+    var title: String {
+        self.rawValue.capitalized
+    }
+    var iconName: String {
+        switch self {
+            case .home:
+                return "list.dash.header.rectangle"
+            case .wellness:
+                return "arrow.up.heart.fill"
+            case .passion:
+                return "sparkles.square.filled.on.square"
+            case .social:
+                return "person.2"
+        }
+    }
+    static let allTitles: [String] = CategorySection.allCases.map {$0.title}
+    static let allIconNames: [String] = CategorySection.allCases.map {$0.iconName}
+}
+
 enum ColorPalette: String {
     case darkJungleGreen
     case myrtleGreen

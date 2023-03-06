@@ -22,6 +22,8 @@
 		1B70C26029B533EA008A4E92 /* CreateTaskModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B70C25F29B533EA008A4E92 /* CreateTaskModalView.swift */; };
 		1B70C26229B53498008A4E92 /* SelectTaskModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B70C26129B53498008A4E92 /* SelectTaskModalView.swift */; };
 		1B70C26429B55710008A4E92 /* FloatingMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B70C26329B55710008A4E92 /* FloatingMenu.swift */; };
+		1B70C26629B57B1F008A4E92 /* PersistenceController+Categories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B70C26529B57B1F008A4E92 /* PersistenceController+Categories.swift */; };
+		1B70C26829B59D1D008A4E92 /* CreateProjectModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B70C26729B59D1D008A4E92 /* CreateProjectModalView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +63,8 @@
 		1B70C25F29B533EA008A4E92 /* CreateTaskModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTaskModalView.swift; sourceTree = "<group>"; };
 		1B70C26129B53498008A4E92 /* SelectTaskModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectTaskModalView.swift; sourceTree = "<group>"; };
 		1B70C26329B55710008A4E92 /* FloatingMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingMenu.swift; sourceTree = "<group>"; };
+		1B70C26529B57B1F008A4E92 /* PersistenceController+Categories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PersistenceController+Categories.swift"; sourceTree = "<group>"; };
+		1B70C26729B59D1D008A4E92 /* CreateProjectModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateProjectModalView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +124,7 @@
 				1B332CE229B2E32900C1FB0C /* ContentView.swift */,
 				1B332CE429B2E32B00C1FB0C /* Assets.xcassets */,
 				1B332CE929B2E32B00C1FB0C /* Persistence.swift */,
+				1B70C26529B57B1F008A4E92 /* PersistenceController+Categories.swift */,
 				1B332CEB29B2E32B00C1FB0C /* TaskTailor.xcdatamodeld */,
 				1B332CE629B2E32B00C1FB0C /* Preview Content */,
 			);
@@ -181,6 +186,7 @@
 				1B70C25F29B533EA008A4E92 /* CreateTaskModalView.swift */,
 				1B70C26129B53498008A4E92 /* SelectTaskModalView.swift */,
 				1B70C26329B55710008A4E92 /* FloatingMenu.swift */,
+				1B70C26729B59D1D008A4E92 /* CreateProjectModalView.swift */,
 			);
 			path = SupportingViews;
 			sourceTree = "<group>";
@@ -323,7 +329,9 @@
 				1B70C26229B53498008A4E92 /* SelectTaskModalView.swift in Sources */,
 				1B567E7B29B42ADA003A460E /* DashboardContentView.swift in Sources */,
 				1B70C25D29B533B9008A4E92 /* TaskModels.swift in Sources */,
+				1B70C26629B57B1F008A4E92 /* PersistenceController+Categories.swift in Sources */,
 				1B332CE329B2E32900C1FB0C /* ContentView.swift in Sources */,
+				1B70C26829B59D1D008A4E92 /* CreateProjectModalView.swift in Sources */,
 				1B332CE129B2E32900C1FB0C /* TaskTailorApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

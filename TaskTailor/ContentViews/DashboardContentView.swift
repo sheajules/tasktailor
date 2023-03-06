@@ -91,6 +91,8 @@ struct DashboardContentView: View {
     ]
 
     @State var toggleCheckbox: Bool = false
+    @State var enableProjectCreation: Bool = false
+
 
     @ViewBuilder
     func createCheckboxView(_ title: String, taskSize: TaskSize) -> some View {
@@ -174,7 +176,7 @@ struct DashboardContentView: View {
         } label: {
             HStack {
                 Text("3")
-                    .padding(4)
+                    .padding(8)
                     .foregroundColor(.white)
                     .background(.gray)
                     .clipShape(Circle())
@@ -268,6 +270,7 @@ struct DashboardContentView: View {
                 VStack(spacing: 8) {
                     summaryView
                     trifectableView
+                        .padding(.bottom, 36)
                 }
                 .fullScreenCover(item: $seelctedType) { item in
                     NavigationView {
@@ -276,11 +279,16 @@ struct DashboardContentView: View {
                     }
                     .accentColor(.white)
                 }
+                .fullScreenCover(isPresented: $enableProjectCreation, content: {
+                    CreateProjectModalView()
+                })
                 .environmentObject(categoryTaskService)
                 .navigationTitle("Overview")
                 .navigationBarTitleDisplayMode(.inline)
 
                 FloatingMenu(openValue: $animationAmount, isMenuOpen: $isMenuOpened) {
+                    self.enableProjectCreation = true
+                } showMenuLargeTaskClosure: {
                     self.seelctedType = .large
                 } showMenuMediumTaskClosure: {
                     self.seelctedType = .medium

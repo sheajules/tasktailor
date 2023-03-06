@@ -9,11 +9,14 @@ import SwiftUI
 
 @main
 struct TaskTailorApp: App {
+    @ObservedObject var categoryTaskService: CategoryTaskService = CategoryTaskService()
     var body: some Scene {
         WindowGroup {
             DashboardContentView()
-//            ContentView()
-//                .environment(\.managedObjectContext, persistenceController.container.viewContext)
+                .onAppear {
+                    categoryTaskService.createDefaultCategories()
+                }
+                .environmentObject(categoryTaskService)
         }
     }
 }

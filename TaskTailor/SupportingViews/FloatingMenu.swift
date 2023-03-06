@@ -15,12 +15,14 @@ struct FloatingMenu: View {
             self.showMenu()
         }
     }
+    @State var showMenuItem0 = false
     @State var showMenuItem1 = false
     @State var showMenuItem2 = false
     @State var showMenuItem3 = false
     @State var offsetValue: CGFloat = 0
     private let fontColor: Color = .white
 
+    var showMenuProjectClosure: () -> Void
     var showMenuLargeTaskClosure: () -> Void
     var showMenuMediumTaskClosure: () -> Void
     var showMenuSmallTaskClosure: () -> Void
@@ -90,10 +92,27 @@ struct FloatingMenu: View {
                 self.showMenuItem1.toggle()
             }
         })
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3, execute: {
+            withAnimation {
+                self.showMenuItem0.toggle()
+            }
+        })
     }
 
     @ViewBuilder
     func getMenuViews() -> some View {
+        if showMenuItem0 {
+            HStack {
+                Spacer()
+                Text("PROJECT")
+                    .foregroundColor(fontColor)
+                MenuItem(icon: "map.circle.fill")
+            }
+            .onTapGesture {
+                showMenuProjectClosure()
+                hideMenu()
+            }
+        }
         if showMenuItem1 {
             HStack {
                 Spacer()

@@ -20,13 +20,6 @@ struct CreateTaskModalView: View {
         "Where do we go now?"
     ]
 
-    var categoryItems: [String] = [
-        "Home",
-        "Wellness",
-        "Social",
-        "Passion"
-    ]
-
     var projectItems: [String] = [
         "Workouts",
         "Mediation"
@@ -72,13 +65,13 @@ struct CreateTaskModalView: View {
                     }
                     .pickerStyle(.segmented)
                     Picker("Category", selection: $selectedCategory) {
-                        ForEach(categoryItems, id: \.self) { item in
-                            Text(item)
+                        ForEach(categoryTaskService.categories) { item in
+                            Text(item.unwrappedTitle)
                         }
                     }
                     Picker("Project", selection: $selectedProject) {
-                        ForEach(projectItems, id: \.self) { item in
-                            Text(item)
+                        ForEach(categoryTaskService.projects, id: \.self) { item in
+                            Text(item.unwrappedTitle)
                         }
                     }
                 }
