@@ -142,25 +142,73 @@ struct DashboardContentView: View {
     @State var isCompletedExpanded: Bool = false
 
     @ViewBuilder
+    func createAddTaskButton(_ taskSize: TaskSize, action: @escaping () -> Void) -> some View {
+        Button {
+            action()
+        } label: {
+            HStack {
+                Image(systemName: "plus.circle")
+                    .foregroundColor(taskSize.color as? Color)
+                Text("Tap to add a \(taskSize.rawValue) task")
+                    .foregroundColor(taskSize.color as? Color)
+                Spacer()
+                Text("\(taskSize.rawValue.first?.uppercased() ?? "")")
+                    .padding(8)
+                    .background(.white.opacity(0.5))
+                    .foregroundColor(taskSize.color as? Color)
+                    .clipShape(Circle())
+                    .padding(.trailing, 8)
+            }
+        }
+        .padding(12)
+        .padding(.horizontal, 8)
+        .background(
+            Rectangle()
+                .strokeBorder(style: StrokeStyle(lineWidth: 2, dash: [8]))
+                .foregroundColor(taskSize.color as? Color)
+                .background(taskSize.color.opacity(0.5))
+        )
+        .padding(.vertical, 8)
+        .cornerRadius(16)
+    }
+
+
+    @ViewBuilder
     var currentTasks: some View {
         DisclosureGroup(isExpanded: $isExpanded) {
-            ForEach(sampleTasks, id: \.self) {
-                createCheckboxView($0, taskSize: .small)
-                    .listRowBackground(Color(.wintergreenDream))
-                    .listRowInsets(.init(top: 0, leading: -4, bottom: 0, trailing: 0))
+            // create empty view & screens
+            // TODO: Use real data
+            createAddTaskButton(.small) {
+                seelctedType = .small
             }
-            ForEach(sampleTasks, id: \.self) {
-                createCheckboxView($0, taskSize: .medium)
-                    .listRowBackground(TaskSize.medium.color)
-                    .listRowInsets(.init(top: 0, leading: -4, bottom: 0, trailing: 0))
+            .listRowInsets(.init(top: 0, leading: -12, bottom: 0, trailing: 8))
+            createAddTaskButton(.medium) {
+                seelctedType = .medium
             }
-            ForEach(sampleTasks, id: \.self) {
-                createCheckboxView($0, taskSize: .large)
-                    .listRowBackground(TaskSize.large.color)
-                    .listRowInsets(.init(top: 0, leading: -4, bottom: 0, trailing: 0))
+            .listRowInsets(.init(top: 0, leading: -12, bottom: 0, trailing: 8))
+            createAddTaskButton(.large) {
+                seelctedType = .large
             }
+            .listRowInsets(.init(top: 0, leading: -12, bottom: 0, trailing: 8))
+
+// TODO: Add inProgressAt date
+//            ForEach(sampleTasks, id: \.self) {
+//                createCheckboxView($0, taskSize: .small)
+//                    .listRowBackground(Color(.wintergreenDream))
+//                    .listRowInsets(.init(top: 0, leading: -4, bottom: 0, trailing: 0))
+//            }
+//            ForEach(sampleTasks, id: \.self) {
+//                createCheckboxView($0, taskSize: .medium)
+//                    .listRowBackground(TaskSize.medium.color)
+//                    .listRowInsets(.init(top: 0, leading: -4, bottom: 0, trailing: 0))
+//            }
+//            ForEach(sampleTasks, id: \.self) {
+//                createCheckboxView($0, taskSize: .large)
+//                    .listRowBackground(TaskSize.large.color)
+//                    .listRowInsets(.init(top: 0, leading: -4, bottom: 0, trailing: 0))
+//            }
         } label: {
-            Text("Primary tasks in-progress")
+            Text("Today's tasks:")
                 .font(.title2)
         }
         .foregroundColor(Color(.redPigment))
@@ -197,7 +245,7 @@ struct DashboardContentView: View {
     @ViewBuilder
     var trifectableView: some View {
         List {
-            Text("Today's lineup")
+            Text(Date.now, format: Date.FormatStyle(date: .complete, time: .omitted))
                 .font(.title)
                 .foregroundColor(Color(.systemGray2))
             HStack {

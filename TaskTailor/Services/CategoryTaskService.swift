@@ -42,7 +42,6 @@ final class CategoryTaskService: ObservableObject {
         }
     }
 
-
     var categoryCases: [TaskSize] {
         TaskSize.allCases
     }

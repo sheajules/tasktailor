@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+// TODO: Might be good to use form view?
 struct SelectTaskModalView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @EnvironmentObject var categoryTaskService: CategoryTaskService
@@ -36,11 +37,6 @@ struct SelectTaskModalView: View {
         "z-a",
         "priority"
     ]
-
-//    var projectItems: [String] = [
-//        "Workouts",
-//        "Mediation"
-//    ]
 
     var body: some View {
         ZStack {
@@ -100,9 +96,12 @@ struct SelectTaskModalView: View {
                             .foregroundColor(.black)
                         Text(task.unwrappedTitle)
                             .foregroundColor(.black)
+                        Spacer()
                     }
                 }
                 .listRowInsets(.init(top: 0, leading: -4, bottom: 0, trailing: 0))
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .background(.white)
             }
             Button {
                 let inputTitle = binding(for: proj.unwrappedTitle).wrappedValue
@@ -133,19 +132,10 @@ struct SelectTaskModalView: View {
         } label: {
             HStack {
                 Text(proj.unwrappedTitle)
+                    .foregroundColor(.white)
             }
         }
-//        .onAppear {
-//            categoryTaskService.projects.forEach { proj in
-//                projectMapToTaskInput[proj.unwrappedTitle] = Binding(
-//                    get: {
-//                        projectMapToTaskInputData[proj.unwrappedTitle] ?? ""
-//                    }, set: {
-//                        projectMapToTaskInputData[proj.unwrappedTitle] = $0
-//                    }
-//                )
-//            }
-//        }
+        .listRowBackground(Color(.peachCrayola))
     }
 
     private func binding(for key: String) -> Binding<String> {
@@ -174,8 +164,10 @@ struct SelectTaskModalView: View {
                         }
                     } header: {
                         HStack {
+                            Image(systemName: "circle.fill")
                             Text(cat.unwrappedTitle)
                             Spacer()
+                            Image(systemName: "plus.circle.fill")
                             Picker("Sort", selection: $selectedSort) {
                                 ForEach(sortBys, id: \.self) { sortBy in
                                     Text(sortBy)
@@ -186,25 +178,9 @@ struct SelectTaskModalView: View {
                         }
                     } footer: {
                         // take the timeType and multiply it by count
-                        Text("Estimated timeleft for tasks: \(getTotalTimeTextForTasks(items.count, timeType: taskSize)) mins")
+//                        Text("Estimated timeleft for tasks: \(getTotalTimeTextForTasks(items.count, timeType: taskSize)) mins")
                     }
                 }
-
-//                Section("Wellness") {
-//                    ForEach(items, id: \.self) { item in
-//                        Text(item)
-//                    }
-//                }
-//                Section("Passion") {
-//                    ForEach(items, id: \.self) { item in
-//                        Text(item)
-//                    }
-//                }
-//                Section("Social") {
-//                    ForEach(items, id: \.self) { item in
-//                        Text(item)
-//                    }
-//                }
             }
         }
         .padding()
